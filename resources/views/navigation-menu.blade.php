@@ -28,6 +28,9 @@
                         <x-nav-link href="/coordinateur" :active="request()->is('coordinateur')">
                             {{ __('Dashboard Coordinateur') }}
                         </x-nav-link>
+                        <x-nav-link href="{{ route('coordinateur.classes.creer') }}" :active="request()->routeIs('coordinateur.classes.creer')">
+                            {{ __('Créer Classe') }}
+                        </x-nav-link>
                     </div>
                 @elseif($role === 'professeur')
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">

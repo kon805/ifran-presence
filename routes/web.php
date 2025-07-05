@@ -4,6 +4,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\RoleMiddleware;
+use App\Livewire\Coordinateur\CreateClasse;
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/redirect-by-role', function (\Illuminate\Http\Request $request) {
@@ -24,6 +25,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/redirect-by-role', functi
 
     Route::middleware('role:coordinateur')->prefix('coordinateur')->group(function () {
         Route::get('/', fn () => view('coordinateur.dashboard'))->name('coordinateur.dashboard');
+        Route::get('/classes/creer', fn () => view('coordinateur.creer-classe-page'))->name('coordinateur.classes.creer');
     });
 
     Route::middleware('role:professeur')->prefix('professeur')->group(function () {
