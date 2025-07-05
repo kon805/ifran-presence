@@ -12,8 +12,7 @@ return new class extends Migration {
     {
         Schema::table('users', function (Blueprint $table) {
             $table->string('matricule')->nullable()->after('password');
-            $table->string('role')->nullable()->after('matricule');
-            $table->string('photo')->nullable()->after('role');
+
         });
     }
 

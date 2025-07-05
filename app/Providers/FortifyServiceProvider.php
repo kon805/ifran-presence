@@ -29,6 +29,14 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Masquer la page register si un certain critère est atteint (ex: 2 admins déjà créés)
+        Fortify::registerView(function () {
+            if (\App\Models\User::where('role', 'admin')->count() >= 1) {
+                abort(403, "Inscription désactivée. Contactez l'administrateur.");
+            }
+            return view('auth.register');
+        });
+
         Fortify::createUsersUsing(CreateNewUser::class);
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
